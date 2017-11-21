@@ -1,0 +1,38 @@
+
+Test Excercise:
+
+Please make a test for the Uptake home page, at least one other page on the site, and write a test using the page object model pattern which verifies that navigation between those pages works correctly. You can decide the details, such as which pages to use, and how to verify that they are correct. Please upload your response to GitHub and send it back to me when you're finished. 
+
+Test1:
+
+public class PageNavigationTest extends FunctionalTest { 
+
+@Test 
+public void pageNavigation(){ 
+ driver.get("https://www.uptake.com/home<?>");
+
+ HomePage homePage = new HomePage(driver); 
+ assertTrue(homePage.isInitialized());
+ 
+ AboutPage aboutPage = homePage.link();
+ assertTrue(aboutPage.isInitialized()); 
+
+ assertEquals("About Uptake", aboutPage.confirmationHeader());
+ }
+} 
+
+There will be a java.util.logging command set up in order to view the results
+
+Test2:
+
+Automation example with framework in Rational Functional Test which I have used for the same test:
+
+openbrowser,,,]         - (Framework will have browser open to Uptake home page)
+page,home,,,]           - (Tool will verify browser is open to Uptake home page or wait for the page to load)
+link,aboutlink,,,]      - (Tool will click on About link)
+page,about,,,]          - (Tool will verify browser is now on 'about' page or wait for page to load)
+test,aboutpageshows,,,] - (Tool will take a verification point of text 'About Uptake' to ensure page is displaying                                    correctly. we can catch any part of this page including entire page if needed)
+closebrowser,,,,]       - (Close browser to end session and Tool writes the results to an HTML log)
+
+Should be able to view pass/fail results of the verification point in HTML Log
+
